@@ -1,5 +1,5 @@
 # clj-paper-print
-![](https://cdn.britannica.com/66/6766-050-C9C8F965/plate-Impressio-Librorum-engraving-drawing-Nova-Reperta-1605.jpg)*Engraving by Theodoor Galle after a drawing by Jan van der Straet, c. 1550*
+![](resources/images/printer.png | width=300 | height=207)
 
 Clj-paper-print is a Clojure thin wrapper library for java.awt.print package. It's an effort to simplify the process of printing on actual paper from Clojure. At the current state provides just a basic functionality but more features will come.
 ## Why
