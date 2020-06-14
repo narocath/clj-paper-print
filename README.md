@@ -1,5 +1,5 @@
 # clj-paper-print
-![](resources/images/printer.png | width=300 | height=207)
+![](resources/images/printer.png | width=300)
 
 Clj-paper-print is a Clojure thin wrapper library for java.awt.print package. It's an effort to simplify the process of printing on actual paper from Clojure. At the current state provides just a basic functionality but more features will come.
 ## Why
