@@ -1,4 +1,4 @@
-(defproject clj-paper-print "0.1.0"
+(defproject clj-paper-print "0.1.1"
   :description "A thin wraper of java.awt.print for clojure."
   :url "https://github.com/narocath/clj-paper-print"
   :license {:name "The MIT Licence"
