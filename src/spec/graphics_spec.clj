@@ -1,5 +1,6 @@
 (ns spec.graphics-spec
-  (:import [java.awt Graphics Color Font Image Rectangle Shape Polygon])
+  (:import [java.awt Graphics Color Font Image Rectangle Shape Polygon]
+           [java.awt.image ImageObserver])
   (:require [clojure.spec.alpha :as s]
             [clojure.spec.gen.alpha :as gen]))
 
@@ -39,6 +40,7 @@
 (s/def ::color? #(instance? java.awt.Color %))
 (s/def ::font? #(instance? java.awt.Font %))
 (s/def ::image? #(instance? java.awt.Image %))
+(s/def ::observer #(instance? java.awt.image.ImageObserver %))
 (s/def ::rect? #(instance? java.awt.Rectangle %))
 (s/def ::shape? #(instance? java.awt.Shape %))
 (s/def ::ch-array? #(= (Class/forName "[C") (type %)))
@@ -50,12 +52,12 @@
                                      :four (s/cat :a ::action? :b ::graphics? :c int? :d int? :e int? :f int? :g boolean?)
                                      :five (s/cat :a ::action? :b ::graphics? :c bytes? :d int? :e int? :f int? :g int?)
                                      :six (s/cat :a ::action? :b ::graphics? :c ::ch-array? :d int? :e int? :f int? :g int?)
-                                     :seven (s/cat :a ::action? :b ::graphics? :c ::image? :d int? :e int?)
-                                     :eight (s/cat :a ::action? :b ::graphics? :c ::image? :d int? :e int? :f ::color?)
-                                     :nine (s/cat :a ::action? :b ::graphics? :c ::image? :d int? :e int? :f int? :g int?)
-                                     :ten (s/cat :a ::action? :b ::graphics? :c ::image? :d int? :e int? :f int? :g int? :h ::color?)
-                                     :eleven (s/cat :a ::action? :b ::graphics? :c ::image? :d int? :e int? :f int? :g int? :h int? :i int? :j int? :k int?)
-                                     :twelve (s/cat :a ::action? :b ::graphics? :c ::image? :d int? :e int? :f int? :g int? :h int? :i int? :j int? :k int? :l ::color?)
+                                     :seven (s/cat :a ::action? :b ::graphics? :c ::image? :d int? :e int? :f (s/or :a ::observer :b nil?))
+                                     :eight (s/cat :a ::action? :b ::graphics? :c ::image? :d int? :e int? :f ::color? :g (s/or :a ::observer :b nil?))
+                                     :nine (s/cat :a ::action? :b ::graphics? :c ::image? :d int? :e int? :f int? :g int? :h (s/or :a ::observer :b nil?))
+                                     :ten (s/cat :a ::action? :b ::graphics? :c ::image? :d int? :e int? :f int? :g int? :h ::color? :i (s/or :a ::observer :b nil?))
+                                     :eleven (s/cat :a ::action? :b ::graphics? :c ::image? :d int? :e int? :f int? :g int? :h int? :i int? :j int? :k int? :l (s/or :a ::observer :b nil?))
+                                     :twelve (s/cat :a ::action? :b ::graphics? :c ::image? :d int? :e int? :f int? :g int? :h int? :i int? :j int? :k int? :l ::color? :m (s/or :a ::observer :b nil?))
                                      :thirteen (s/cat :a ::action? :b ::graphics? :c ::polygon?)
                                      :fourteen (s/cat :a ::action? :b ::graphics? :c int? :d int? :e int?)
                                      :fifteen (s/cat :a ::action? :b ::graphics? :c string? :d int? :e int?)

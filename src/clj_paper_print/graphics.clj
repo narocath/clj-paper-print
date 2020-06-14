@@ -1,5 +1,6 @@
 (ns clj-paper-print.graphics
-  (:import [java.awt Graphics Color Font Image Rectangle Shape Polygon])
+  (:import [java.awt Graphics Color Font Image Rectangle Shape Polygon]
+           [java.awt.image ImageObserver])
   (:require [clojure.spec.alpha :as s]
             [expound.alpha :as expound]
             [spec.graphics-spec :as gspec]))
@@ -73,36 +74,32 @@
   For more details visit the java
   'https://docs.oracle.com/javase/8/docs/api/java/awt/Graphics.html#drawImage-java.awt.Image-int-int-java.awt.Color-java.awt.image.ImageObserver-',
   also normally the drawImage method can take an ImageObserver object as last argument, but usually this will be nil."
-  ([^Graphics g ^Image image ^Integer x ^Integer y ^Color bgcolor]
+  ([^Graphics g ^Image image ^Integer x ^Integer y ^Color bgcolor ^ImageObserver imgobserver]
    (try
-     (.drawImage g x y bgcolor)
+     (.drawImage g image x y bgcolor imgobserver)
      (catch Exception e (prn "Caught `graphics-methods` exception: " (.getMessage e)))))
-  ([^Graphics g ^Image image ^Integer x ^Integer y]
+  ([^Graphics g ^Image image ^Integer x ^Integer y ^Integer width ^Integer height ^ImageObserver imgobserver]
    (try
-     (.drawImage g x y)
+     (.drawImage g image x y width height imgobserver)
      (catch Exception e (prn "Caught `graphics-methods` exception: " (.getMessage e)))))
-  ([^Graphics g ^Image image ^Integer x ^Integer y ^Integer width ^Integer height ^Color bgcolor]
+  ([^Graphics g ^Image image ^Integer x ^Integer y ^Integer width ^Integer height ^Color bgcolor ^ImageObserver imgobserver]
    (try
-     (.drawImage g x y width height bgcolor)
-     (catch Exception e (prn "Caught `graphics-methods` exception: " (.getMessage e)))))
-  ([^Graphics g ^Image image ^Integer x ^Integer y ^Integer width ^Integer height]
-   (try
-     (.drawImage g x y width height)
+     (.drawImage g image x y width height bgcolor imgobserver)
      (catch Exception e (prn "Caught `graphics-methods` exception: " (.getMessage e)))))
   ([^Graphics g ^Image image ^Integer dx1 ^Integer dy1
                  ^Integer dx2 ^Integer dy2
                  ^Integer sx1 ^Integer sy1
                  ^Integer sx2 ^Integer sy2
-                 ^Color bgcolor]
+                 ^Color bgcolor ^ImageObserver imgobserver]
    (try
-     (.drawImage g image dx1 dy1 dx2 dy2 sx1 sy1 sx2 sy2 bgcolor)
+     (.drawImage g image dx1 dy1 dx2 dy2 sx1 sy1 sx2 sy2 bgcolor imgobserver)
      (catch Exception e (prn "Caught `graphics-methods` exception: " (.getMessage e)))))
   ([^Graphics g ^Image image ^Integer dx1 ^Integer dy1
                  ^Integer dx2 ^Integer dy2
                  ^Integer sx1 ^Integer sy1
-                 ^Integer sx2 ^Integer sy2]
+                 ^Integer sx2 ^Integer sy2 ^ImageObserver imgobserver]
    (try
-     (.drawImage g image dx1 dy1 dx2 dy2 sx1 sy1 sx2 sy2)
+     (.drawImage g image dx1 dy1 dx2 dy2 sx1 sy1 sx2 sy2 imgobserver)
      (catch Exception e (prn "Caught `graphics-methods` exception: " (.getMessage e))))))
 (defn draw-line
   "A function that will draw a line, for the supplied Graphics objcet along with the coordination and dimensions."
