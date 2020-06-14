@@ -1,0 +1,47 @@
+# leiningen .gitignore defaults
+/target
+/classes
+/checkouts
+pom.xml
+pom.xml.asc
+*.jar
+*.class
+/.lein-*
+/.vscode
+/.nrepl-port
+*.emacs.*
+
+build
+lib
+*.dot
+
+# use glob syntax.
+syntax: glob
+creds.clj
+Manifest.txt
+aws.clj
+*.ser
+*~
+*.bak
+*.off
+*.old
+.DS_Store
+*.#*
+*#*
+*.classpath
+*.project
+*.settings
+*.pyc
+*.projectile
+docs/*
+doc
+http.log
+
+*.ps
+/*.iml
+/.idea
+
+log/
+
+*.org
+*.txt
