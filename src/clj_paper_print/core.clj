@@ -107,7 +107,7 @@
   "A macro to create a PrintrJob object."
   ([-symbol]
    `(do
-      (def ~-symbol PrinterJob/getPrinterJob)
+      (def ~-symbol (. PrinterJob getPrinterJob))
    ~-symbol))
   ([-symbol config]
    `(let [c# (atom-checker ~config)]
